@@ -1,5 +1,12 @@
 function Greeting(){
-    return <h1>&quot;Hey buddy how you doing?&quot;</h1>;
+    const animals = ["Lion", "Cow", "Snake", "Lizard"];
+
+    return <>
+        <h1>&quot;Hey buddy how you doing?&quot;</h1>
+        {animals.map((animal) =>{
+            return <li key={animal}>{animal}</li>
+        })}
+    </>
 }
 
 export const Food = ()=>{
