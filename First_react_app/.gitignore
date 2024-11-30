@@ -1,42 +1,81 @@
-# Node modules
-node_modules/
-
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+lerna-debug.log*
 
 # Dependency directories
-dist/
-build/
+node_modules/
 
-# Environment files
+# Build output
+dist/
+dist-ssr/
+
+# Vite cache
+.vite/
+
+# Local environment files
 .env
-.env.local
 .env.*.local
 
-# Cache and temp files
-.cache/
-.vite/
-.tmp/
-
 # Editor directories and files
-.vscode/*
 .idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.sw?
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
 
-# OS-generated files
-.DS_Store
-Thumbs.db
-Desktop.ini
-
-# System files
-*.bak
+# Temporary files
 *.tmp
-*.local
+*.temp
+
+# macOS Finder
+._*
+
+# Windows Explorer thumbnail cache files
+Thumbs.db
+ehthumbs.db
+
+# React Native
+.expo/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+
+# Stylelint cache
+.stylelintcache
+
+# Optional: Coverage directory for testing
+coverage/
+
+# Optional: Yarn Integrity
+.yarn-integrity
+
+# Optional: Parcel cache
+.cache/
+
+# Optional: JetBrains IDE directories
+/.idea/
+
+# Optional: npm package lock (if using Yarn)
+package-lock.json
+
+# VSCode settings
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/jsconfig.json
+
+# Prettier
+!.prettierignore
