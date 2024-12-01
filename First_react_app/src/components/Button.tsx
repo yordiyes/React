@@ -1,10 +1,18 @@
+interface Props {
+  children: string;
+  color?: "primary" | "secondary" | "danger" | "success";
+  onClick: (item: string) => void;
+}
 
-
-function Button(){
+function Button({ children, color = "primary", onClick }: Props) {
+  return (
     <div>
-        Button
+      <button className={`btn btn-${color}`} 
+      onClick={() => onClick(color)}>
+        {children}
+      </button>
     </div>
+  );
 }
 
 export default Button;
-
