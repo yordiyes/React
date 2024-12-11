@@ -1,3 +1,5 @@
+import styles from  './Button.module.css'
+
 interface Props {
   children: string;
   color?: "primary" | "secondary" | "danger" | "success";
@@ -11,6 +13,7 @@ function Button({ children, color = "primary", onClick }: Props) {
       onClick={() => onClick(color)}>
         {children}
       </button>
+      <button className={styles.Button }>Seondary</button>
     </div>
   );
 }

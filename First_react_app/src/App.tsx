@@ -1,25 +1,11 @@
-  import Button from "./components/Button";
+import Like from './components/Like'
 
-  function App() {
-    const handleClick = (item: string)=>{
-      console.log(item+ " button clicked")
-    }
+function App() {
+  return (
+    <div>
+      <Like onClick={()=>console.log("Clicked")} />
+    </div>
+  );
+}
 
-    return (
-      <div>
-        <Button color="primary" onClick={handleClick}>
-          Primary
-        </Button>
-
-        <Button color="success" onClick={handleClick}>
-          Success
-        </Button>
-
-        <Button color="secondary" onClick={handleClick}>
-          Secondary
-        </Button>
-      </div>
-    );
-  }
-
-  export default App;
+export default App;
