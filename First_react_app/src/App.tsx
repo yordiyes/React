@@ -18,7 +18,21 @@ export default function ProductList() {
       .delete("https://jsonplaceholder.typicode.com/users/" + user.id)
       .catch((err) => {
         setError(err.message);
-        setUsers(originalusers); 
+        setUsers(originalusers);
+      });
+  };
+
+  const addUser = () => {
+    const originalusers = [...users];
+    const newUser = { id: 0, name: "Yordanos" };
+    setUsers([newUser, ...users]);
+
+    axios
+      .post("https://jsonplaceholder.typicode.com/users", newUser)
+      .then((res) => setUsers([res.data, ...users]))
+      .catch((err) => {
+        setError(err.message);
+        setUsers(originalusers);
       });
   };
 
@@ -56,6 +70,9 @@ export default function ProductList() {
     <>
       {error && <p className="text-danger">{error}</p>}
       {isLoading && <div className="spinner-border"></div>}
+      <button className="btn btn-primary mx-3 mt-3 mb-3" onClick={addUser}>
+        Add
+      </button>
       <ul className="list-group list-group-flush">
         {users.map((user) => (
           <li
@@ -69,7 +86,6 @@ export default function ProductList() {
             >
               Delete
             </button>
-            {/* <button className="btn btn-outline-danger">Add</button> */}
           </li>
         ))}
       </ul>
