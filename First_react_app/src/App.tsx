@@ -1,10 +1,6 @@
-import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-
-interface User {
-  id: number;
-  name: string;
-}
+import ApiClient from "./services/Api-client.";
+import UserService, { User } from "./services/user-services";
 
 export default function ProductList() {
   const [users, setUsers] = useState<User[]>([]);
@@ -14,12 +10,10 @@ export default function ProductList() {
   const deleteUser = (user: User) => {
     const originalusers = [...users];
     setUsers(users.filter((u) => u.id !== user.id));
-    axios
-      .delete("https://jsonplaceholder.typicode.com/users/" + user.id)
-      .catch((err) => {
-        setError(err.message);
-        setUsers(originalusers);
-      });
+    ApiClient.delete("/users/" + user.id).catch((err) => {
+      setError(err.message);
+      setUsers(originalusers);
+    });
   };
 
   const addUser = () => {
@@ -27,8 +21,7 @@ export default function ProductList() {
     const newUser = { id: 0, name: "Yordanos" };
     setUsers([newUser, ...users]);
 
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", newUser)
+    ApiClient.post("/users", newUser)
       .then((res) => setUsers([res.data, ...users]))
       .catch((err) => {
         setError(err.message);
@@ -41,15 +34,10 @@ export default function ProductList() {
     const updatedUser = { ...user, name: user.name + "!" };
     setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
 
-    axios
-      .patch(
-        "https://jsonplaceholder.typicode.com/users/" + user.id,
-        updatedUser
-      )
-      .catch((err) => {
-        setError(err.message);
-        setUsers(originalUsers);
-      });
+    ApiClient.patch("/users/" + user.id, updatedUser).catch((err) => {
+      setError(err.message);
+      setUsers(originalUsers);
+    });
   };
   useEffect(() => {
     //we can fetch datat using axios by two methods, one is using await async method which is like:-
@@ -70,8 +58,8 @@ export default function ProductList() {
 
     // the  second method is using .then like:-
     setIsLoading(true);
-    axios
-      .get<User[]>("https://jsonplaceholder.typicode.com/users")
+    UserService
+      .getAllUsers()
       .then((res) => {
         setUsers(res.data);
         setIsLoading(false);
